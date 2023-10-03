@@ -1,3 +1,9 @@
 import { Router } from "express";
 
-export const router = Router();
+import { blogPostRouter } from "./blog-post.router";
+
+const router = Router();
+
+router.use('blog-post', blogPostRouter)
+
+export { router}
