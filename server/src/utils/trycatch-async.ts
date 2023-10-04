@@ -5,11 +5,13 @@ export const tryCatchAsync =
     fn: (
       req: Request,
       res: Response
-    ) => Promise<void | Response<any, Record<string, any>>>
+    ) => Promise<void | Response<any, Record<string, any>>>,
+    onError?: Function
   ) =>
   (req: Request, res: Response) => {
     fn(req, res).catch((err: Error) => {
-      console.error(err);
       res.status(500).json({ message: 'Internal server error' });
+      onError && onError(err);
+      console.error(err);
     });
   };
