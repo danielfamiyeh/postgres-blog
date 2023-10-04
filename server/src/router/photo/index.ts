@@ -13,5 +13,6 @@ photoRouter.use('/photos-to-categories', photosToCategoriesRouter);
 
 photoRouter.get('/all', tryCatchAsync(controllers.photo.getAll))
 photoRouter.get('/:id', tryCatchAsync(controllers.photo.getById));
+photoRouter.get('/by-category/:category', tryCatchAsync(controllers.photo.getByCategory))
 
 export { photoRouter };
