@@ -19,7 +19,7 @@ photoCategoriesRouter.get(
 photoCategoriesRouter.post(
   '/',
   tryCatchAsync(async (req, res) => {
-    const { slug, display_name } = req.body;
+    const { slug, displayName } = req.body;
     const {
       rows: [photoCategory],
     } = await pool.query(
@@ -28,7 +28,7 @@ photoCategoriesRouter.post(
     VALUES ($1, $2)
     RETURNING *
     `,
-      [slug, display_name]
+      [slug, displayName]
     );
 
     return res.json({ photoCategory });
