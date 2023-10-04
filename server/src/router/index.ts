@@ -1,9 +1,11 @@
-import { Router } from "express";
+import { Router } from 'express';
 
-import { blogPostRouter } from "./blog-post.router";
+import { photoRouter } from './photo';
+import { blogPostRouter } from './blog-post.router';
 
 const router = Router();
 
-router.use('blog-post', blogPostRouter)
+router.use('/blog', blogPostRouter);
+router.use('/photo', photoRouter);
 
-export { router}
+export { router };
