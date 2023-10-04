@@ -15,11 +15,24 @@ export const photoController = {
   getById: async (req: Request, res: Response) => {
     const { id } = req.params;
 
-    const { rows: [photo] } = await pool.query(
+    const {
+      rows: [photo],
+    } = await pool.query(
       photoQueries.getPhotosWithMetadata(`WHERE photos.id = $1`),
       [id]
     );
 
     return res.json({ photo });
+  },
+
+  getByCategory: async (req: Request, res: Response) => {
+    const { category } = req.params;
+
+    const { rows: photosByCategory } = await pool.query(
+      photoQueries.getPhotosByCategory,
+      [category]
+    );
+
+    return res.json({ photosByCategory });
   },
 };
